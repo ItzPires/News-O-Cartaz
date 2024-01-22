@@ -1,0 +1,15 @@
+psql -h localhost -U postgres  -d dbfichas -c "CREATE TABLE news (
+    id SERIAL PRIMARY KEY,
+    site VARCHAR(255),
+    url VARCHAR(255),
+    url_imagem VARCHAR(255),
+    titulo VARCHAR(255),
+    descricao TEXT,
+    data TIMESTAMP,
+    categoria VARCHAR(255),
+    destaques BOOLEAN,
+    ultimas BOOLEAN
+);"
+
+
+docker run --name dbCartaz -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=dbfichas -p 5432:5432 -d postgres
