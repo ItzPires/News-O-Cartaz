@@ -22,7 +22,6 @@ const Footer = () => {
                         <h5>Categorias</h5>
 
                         <ul>
-                            <li><a href="/categoria/Covid">Covid-19</a></li>
                             <li><a href="/categoria/País">País</a></li>
                             <li><a href="/categoria/Economia">Economia</a></li>
                             <li><a href="/categoria/Cultura">Cultura</a></li>

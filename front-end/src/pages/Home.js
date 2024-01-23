@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Article from "../components/Article/Article";
 
 const Home = () => {
     const [newsAll, setNewsAll] = useState([]);
@@ -7,9 +8,9 @@ const Home = () => {
 
 
     const getNews = () => {
-        let a = ["Sic", "https://www.sic.pt/Programas/jornal-da-noite/videos/2021-05-17-Jornal-da-Noite---17-de-maio-de-2021", "https://www.sic.pt/Programas/jornal-da-noite/videos/2021-05-17-Jornal-da-Noite---17-de-maio-de-2021", "Jornal da Noite - 17 de maio de 2021", "Jornal Apresentado por Rodrigo Guedes de Carvalho"];
+        let a = ["Sic", "https://www.sic.pt/Programas/jornal-da-noite/videos/2021-05-17-Jornal-da-Noite---17-de-maio-de-2021", "https://media-manager.noticiasaominuto.com/640/naom_659d31a27b948.jpg", "Jornal da Noite - 17 de maio de 2021", "Jornal Apresentado por Rodrigo Guedes de Carvalho"];
 
-        let b = ["Sic", "https://www.sic.pt/Programas/jornal-da-noite/videos/2021-05-17-Jornal-da-Noite---17-de-maio-de-2021", "https://www.sic.pt/Programas/jornal-da-noite/videos/2021-05-17-Jornal-da-Noite---17-de-maio-de-2021", "Jornal da Noite - 17 de maio de 2021", "Jornal Apresentado por Rodrigo Guedes de Carvalho"];
+        let b = ["Sic", "https://www.sic.pt/Programas/jornal-da-noite/videos/2021-05-17-Jornal-da-Noite---17-de-maio-de-2021", "https://media-manager.noticiasaominuto.com/640/naom_659d31a27b948.jpg", "Jornal da Noite - 17 de maio de 2021", "Jornal Apresentado por Rodrigo Guedes de Carvalho"];
 
         setNewsAll([a, b]);
         //setNewsT([a, b]);
@@ -17,20 +18,19 @@ const Home = () => {
 
     useEffect(() => {
         getNews();
-    }
-        , []);
+    }, []);
 
     /*<h2 style="text-align:center">{{ keyword }}</h2>*/
     return (
         <section className="s-bricks">
 
             <div className="masonry">
-
+                <h2>Home</h2>
                 <div className="bricks-wrapper h-group">
 
                     <div className="grid-sizer"></div>
 
-                    <div className="brick entry featured-grid animate-this">
+                    <div className="brick entry featured-grid">
                         <div className="entry__content">
 
                             <div className="featured-post-slider flexslider">
@@ -39,7 +39,7 @@ const Home = () => {
                                     <div className="featured-post-slide" key={index}>
                                         <div className="f-slide">
 
-                                            <div className="f-slide__background" style="background-image:url('{{new[2]}}');"></div>
+                                            <div className="f-slide__background"></div>
                                             <div className="f-slide__overlay"></div>
 
                                             <div className="f-slide__content">
@@ -73,38 +73,9 @@ const Home = () => {
                     </div>
 
                     {newsAll.map((news, index) => (
-                        <article className="brick entry format-standard animate-this" key={index}>
-
-                            <div className="entry__thumb">
-                                <a target="_blank" href="{{new[1]}}" className="thumb-link">
-                                    <img src="{{new[2]}}" alt="" />
-                                </a>
-                            </div>
-                            <div className="entry__text">
-                                <div className="entry__header">
-
-                                    <div className="entry__meta">
-                                        <span className="entry__cat-links">
-                                            <a href={`/source/${news[0]}`}>{news[0]}</a>
-                                        </span>
-                                    </div>
-
-                                    <h1 className="entry__title">
-                                        <a target="_blank" href={news[1]}>
-                                            {news[3]}
-                                        </a>
-                                    </h1>
-                                </div>
-                                <div className="entry__excerpt">
-                                    <p>
-                                        {news[4]}
-                                    </p>
-                                </div>
-                            </div>
-                        </article>
+                        <Article news={news} index={index} />
                     ))}
                 </div>
-
             </div>
         </section>
     );

@@ -1,4 +1,17 @@
+import React, { useState } from 'react';
+import './NavBar.css';
+
 const NavBar = () => {
+    const [searchValue, setSearchValue] = useState('');
+
+    const handleSearchChange = (event) => {
+      setSearchValue(event.target.value);
+    };
+  
+    const handleSubmit = (event) => {
+      event.preventDefault();
+    };
+
     return (
         <header className="s-header">
 
@@ -15,7 +28,6 @@ const NavBar = () => {
                     <ul className="s-header__nav">
                         <li><a href="/" title="">Destaques</a></li>
                         <li><a href="/ultimas" title="">Últimas</a></li>
-                        <li><a href="/categoria/Covid">Covid-19</a></li>
                         <li><a href="/categoria/País">País</a></li>
                         <li><a href="/categoria/Economia">Economia</a></li>
                         <li><a href="/categoria/Cultura">Cultura</a></li>
@@ -39,16 +51,31 @@ const NavBar = () => {
                 <a className="s-header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
 
                 <div className="s-header__search">
-
-                    <form role="search" method="get" className="s-header__search-form" action="#">
+                    <form
+                        role="search"
+                        method="get"
+                        className="s-header__search-form"
+                        action="#"
+                        onSubmit={handleSubmit}
+                    >
                         <label>
-                            <input type="search" className="s-header__search-field" placeholder="O Que Procura?" value="" name="search" title="O Que Procura?" autocomplete="off" />
+                            <input
+                                type="search"
+                                className="s-header__search-field"
+                                placeholder="O Que Procura?"
+                                value={searchValue}
+                                onChange={handleSearchChange}
+                                name="search"
+                                title="O Que Procura?"
+                                autoComplete="off"
+                            />
                         </label>
                         <input type="submit" className="s-header__search-submit" value="Search" />
                     </form>
 
-                    <a href="#0" title="Close Search" className="s-header__overlay-close">Fechar</a>
-
+                    <a href="#0" title="Close Search" className="s-header__overlay-close">
+                        Fechar
+                    </a>
                 </div>
 
                 <a className="s-header__search-trigger" href="#">
