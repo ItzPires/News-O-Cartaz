@@ -38,9 +38,8 @@ const Footer = () => {
                         <h5>Ajuda?</h5>
 
                         <ul>
-                            <li><a href="/about">Sobre Nós</a></li>
-                            <li><a href="/faq">FAQ</a></li>
-                            <li><a href="/contacto">Contacto</a></li>
+                            <li><a href="/sobre">Sobre Nós</a></li>
+                            <li><a href="/contactos">Contacto</a></li>
                             <li><a href="/fontes">Fontes</a></li>
                         </ul>
 
