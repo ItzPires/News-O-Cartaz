@@ -1,21 +1,58 @@
 import React, { useState, useEffect } from 'react';
 
 const Weather = () => {
-    const [cityList, setCityList] = useState([{ 'name': 'Lisboa' }, { 'name': 'Porto' }, { 'name': 'Faro' }, { 'name': 'Évora' }, { 'name': 'Beja' }, { 'name': 'Braga' }, { 'name': 'Bragança' }, { 'name': 'Castelo Branco' }, { 'name': 'Coimbra' }, { 'name': 'Guarda' }, { 'name': 'Leiria' }, { 'name': 'Portalegre' }, { 'name': 'Santarém' }, { 'name': 'Setúbal' }, { 'name': 'Viana do Castelo' }, { 'name': 'Vila Real' }, { 'name': 'Viseu' }]);
-    const [selectedCity, setSelectedCity] = useState('Lisboa');
+    const [cityList, setCityList] = useState([]);
+    const [selectedCity, setSelectedCity] = useState({
+        "globalIdLocal": 1110600,
+        "name": "Lisboa"
+    });
     const [tempInfoList, setTempInfoList] = useState([]);
+    const [tempInfo, setTempInfo] = useState([]);
 
     const handleCityChange = (event) => {
         setSelectedCity(event.target.value);
     }
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(process.env.PUBLIC_URL + '/json/citys.json');
+                const data = await response.json();
+                setCityList(data);
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+            }
+        };
+
+        const fetchTempInfo = async () => {
+            try {
+                const response = await fetch('http://api.ipma.pt/open-data/forecast/meteorology/cities/daily/hp-daily-forecast-day0.json');
+                const data = await response.json();
+                setTempInfoList(data);
+                getTempInfo(data);
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+            }
+        };
+
+        const getTempInfo = (tempInfoList) => {
+            const tempInfo = tempInfoList.data.filter((temp) => temp.globalIdLocal === selectedCity.globalIdLocal);
+            setTempInfo(tempInfo);
+        }
+
+        fetchData();
+        fetchTempInfo();
+    }, [])
+
+    //<span dangerouslySetInnerHTML={{ __html: temp[4] }} />
+
     return (
         <>
-            <section class="s-bricks">
+            <section className="s-bricks">
 
-                <div class="masonry">
-                    <h2>Tempo - {selectedCity}</h2>
-                    <div class="entry__excerpt">
+                <div className="masonry">
+                    <h2>Tempo - {selectedCity.name}</h2>
+                    <div className="entry__excerpt">
                         <form name="city" action="/tempo">
 
                             <select name="cidade" value={selectedCity} onChange={handleCityChange}>
@@ -27,20 +64,20 @@ const Weather = () => {
                             </select>
                         </form>
                     </div>
-                    <div class="bricks-wrapper h-group">
+                    <div className="bricks-wrapper h-group">
 
-                        <div class="grid-sizer"></div>
-                        {tempInfoList.map((tempInfo, index) => (
-                            <article key={index} className="brick entry format-standard animate-this">
+                        <div className="grid-sizer"></div>
+                        {tempInfo.map((temp, index) => (
+                            <article key={index} className="brick entry format-standard">
                                 <div className="entry__text" style={{ borderRadius: '10px 10px 10px 10px' }}>
                                     <div className="entry__header">
-                                        <span dangerouslySetInnerHTML={{ __html: tempInfo[4] }} />
+                                        
 
-                                        <h1 className="entry__title">{tempInfo[5]}</h1>
+                                        <h1 className="entry__title">{temp[5]}</h1>
                                     </div>
                                     <div className="entry__excerpt">
-                                        <h2>{tempInfo[1]}º</h2>
-                                        <h4>{tempInfo[2]}º</h4>
+                                        <h2>{temp.tMax}º</h2>
+                                        <h4>{temp.tMin}º</h4>
                                     </div>
                                 </div>
                             </article>
