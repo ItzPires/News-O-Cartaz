@@ -35,7 +35,7 @@ const NavBar = () => {
                         <li><a href="/locais">Locais</a></li>
                         <li><a href="/tempo" title="">Tempo</a></li>
                         <li className="has-children">
-                            <a href="/categoria/Outros" title="">Outros</a>
+                            <a title="">Outros</a>
                             <ul className="sub-menu">
                                 <li><a href="/categoria/Mundo">Mundo</a></li>
                                 <li><a href="/categoria/Tecnologia">Tecnologia</a></li>
