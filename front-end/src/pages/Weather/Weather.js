@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import WeatherBox from '../../components/WeatherBox/WeatherBox';
 
 const Weather = () => {
     const [cityList, setCityList] = useState([]);
@@ -6,7 +7,6 @@ const Weather = () => {
         "globalIdLocal": 1110600,
         "name": "Lisboa"
     });
-    const [tempInfoList, setTempInfoList] = useState([]);
     const [tempInfo, setTempInfo] = useState([]);
 
     const handleCityChange = (event) => {
@@ -24,24 +24,50 @@ const Weather = () => {
             }
         };
 
-        const fetchTempInfo = async () => {
+        const fetchTempInfo = async (day) => {
             try {
-                const response = await fetch('http://api.ipma.pt/open-data/forecast/meteorology/cities/daily/hp-daily-forecast-day0.json');
+                const response = await fetch('http://api.ipma.pt/open-data/forecast/meteorology/cities/daily/hp-daily-forecast-day' + day + '.json');
                 const data = await response.json();
-                setTempInfoList(data);
-                getTempInfo(data);
+                const tempInfo = getTempInfo(data);
+                const dayName = getDayName(day);
+                return { day: dayName, tempInfo: tempInfo };
             } catch (error) {
                 console.error('Erro ao buscar dados:', error);
+                throw error;
             }
         };
 
+        const getDayName = (day) => {
+            if (day === 0) {
+                return 'Hoje';
+            } else if (day === 1) {
+                return 'Amanhã';
+            } else {
+                return 'Depois de Amanhã';
+            }
+        }
+
+        const getTempInfoForThreeDays = async () => {
+            try {
+                let auxTempInfo = [];
+                for (let i = 0; i < 3; i++) {
+                    auxTempInfo.push(fetchTempInfo(i));
+                }
+                const resolvedTempInfoList = await Promise.all(auxTempInfo);
+                setTempInfo(resolvedTempInfoList);
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+                throw error;
+            }
+        }
+
         const getTempInfo = (tempInfoList) => {
             const tempInfo = tempInfoList.data.filter((temp) => temp.globalIdLocal === selectedCity.globalIdLocal);
-            setTempInfo(tempInfo);
+            return tempInfo[0];
         }
 
         fetchData();
-        fetchTempInfo();
+        getTempInfoForThreeDays();
     }, [])
 
     //<span dangerouslySetInnerHTML={{ __html: temp[4] }} />
@@ -68,19 +94,7 @@ const Weather = () => {
 
                         <div className="grid-sizer"></div>
                         {tempInfo.map((temp, index) => (
-                            <article key={index} className="brick entry format-standard">
-                                <div className="entry__text" style={{ borderRadius: '10px 10px 10px 10px' }}>
-                                    <div className="entry__header">
-                                        
-
-                                        <h1 className="entry__title">{temp[5]}</h1>
-                                    </div>
-                                    <div className="entry__excerpt">
-                                        <h2>{temp.tMax}º</h2>
-                                        <h4>{temp.tMin}º</h4>
-                                    </div>
-                                </div>
-                            </article>
+                            <WeatherBox key={index} index={index} temp={temp} />
                         ))}
 
                     </div>
