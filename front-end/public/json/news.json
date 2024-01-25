@@ -1,0 +1,36 @@
+[
+    {
+      "site": "SIC",
+      "url": "https://sicnoticias.pt/pais/2024-01-25-Chega-vai-avancar-com-mocao-de-censura-ao-Governo-Regional-da-Madeira-605b8857",
+      "url_image": "https://images.impresa.pt/sicnot/2023-10-09-Ultima-Hora-5f0e06bd/original/mw-720",
+      "title": "Chega vai avançar com moção de censura ao Governo Regional da Madeira",
+      "description": "Noticias Sic",
+      "data": "2024-01-25",
+      "category": "País",
+      "destaques": true,
+      "latest": true
+    },
+    {
+      "site": "SIC",
+      "url": "https://sicnoticias.pt/pais/2024-01-25-Operacao-Marques-declarados-prescritos-mais-de-uma-dezena-de-crimes-de-fraude-fiscal-afeab5c9",
+      "url_image": "https://images.impresa.pt/sicnot/2023-12-19-Jose-Socrates-89a558c2-1/original/mw-720",
+      "title": "Operação Marquês: declarados prescritos mais de uma dezena de crimes de fraude fiscal",
+      "description": "O antigo primeiro-ministro José Sócrates era o beneficiário em quatro destes crimes, o seu amigo Carlos Santos Silva era beneficiário de um dos crimes e coautor de outros quatro.",
+      "data": "2024-01-25",
+      "category": "Justiça",
+      "destaques": true,
+      "latest": true
+    },
+    {
+        "site": "TSF",
+        "url": "https://www.tsf.pt/6808084317/pan-ameaca-romper-acordo-na-madeira-se-miguel-albuquerque-nao-se-demitir/",
+        "url_image": "https://asset-ng.skoiy.com/tsfiqogiwkcugyug/gxbgajo4o6ua.jpg?w=967&q=80&fm=webp",
+        "title": "PAN ameaça romper acordo na Madeira se Miguel Albuquerque não se demitir",
+        "description": "O PAN ameaça esta quinta-feira romper o acordo de incidência parlamentar na Madeira com o PSD, caso Miguel Albuquerque não se demita do cargo de Presidente do Governo Regional.",
+        "data": "2024-01-25",
+        "category": "Política",
+        "destaques": true,
+        "latest": true
+      }
+  ]
+  

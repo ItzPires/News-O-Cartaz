@@ -7,13 +7,10 @@ const Home = () => {
     const [keyword, setKeyword] = useState("");
 
 
-    const getNews = () => {
-        let a = ["Sic", "https://www.sic.pt/Programas/jornal-da-noite/videos/2021-05-17-Jornal-da-Noite---17-de-maio-de-2021", "https://media-manager.noticiasaominuto.com/640/naom_659d31a27b948.jpg", "Jornal da Noite - 17 de maio de 2021", "Jornal Apresentado por Rodrigo Guedes de Carvalho"];
-
-        let b = ["Sic", "https://www.sic.pt/Programas/jornal-da-noite/videos/2021-05-17-Jornal-da-Noite---17-de-maio-de-2021", "https://media-manager.noticiasaominuto.com/640/naom_659d31a27b948.jpg", "Jornal da Noite - 17 de maio de 2021", "Jornal Apresentado por Rodrigo Guedes de Carvalho"];
-
-        setNewsAll([a, b]);
-        //setNewsT([a, b]);
+    const getNews = async () => {
+        const response = await fetch(process.env.PUBLIC_URL + '/json/news.json');
+        const data = await response.json();
+        setNewsAll(data);
     };
 
     useEffect(() => {
