@@ -103,9 +103,7 @@ const Weather = () => {
 
             </section>
 
-            <a target="_blank" href="https://www.ipma.pt/">
-                <p>Fonte: IPMA</p>
-            </a>
+            <p className="keywords">Dados fornecidos pelo <a target="_blank" href="https://www.ipma.pt/">IPMA</a></p>
         </>
     );
 };
