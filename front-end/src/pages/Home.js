@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Article from "../components/Article/Article";
 import SliderNews from "../components/SliderNews/SliderNews";
-
+import APIService from "../services/APIService";
 const Home = () => {
     const [newsAll, setNewsAll] = useState([]);
 
     const getNews = async () => {
-        const response = await fetch(process.env.PUBLIC_URL + '/json/news.json');
-        const data = await response.json();
-        setNewsAll(data);
+        APIService.getNews().then((data) => {
+            setNewsAll(data);
+        });
     };
 
     useEffect(() => {
@@ -26,7 +26,7 @@ const Home = () => {
                     <div className="brick entry featured-grid">
                         <div className="entry__content">
 
-                        <SliderNews newsAll={newsAll} />
+                            <SliderNews newsAll={newsAll} />
 
                         </div>
                     </div>

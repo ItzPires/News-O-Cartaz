@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Article from "../../components/Article/Article";
+import APIService from "../../services/APIService";
 
 const Category = ({ CategoryName, source = false, latest = false, search = false }) => {
     const { id } = useParams();
@@ -25,9 +26,9 @@ const Category = ({ CategoryName, source = false, latest = false, search = false
 
 
         const getNews = async () => {
-            const response = await fetch(process.env.PUBLIC_URL + '/json/news.json');
-            const data = await response.json();
-            setNews(filterNews(data));
+            APIService.getNews().then((data) => {
+                setNews(filterNews(data));
+            });
         };
 
         getNews();

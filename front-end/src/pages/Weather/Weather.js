@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import WeatherBox from '../../components/WeatherBox/WeatherBox';
+import APIService from '../../services/APIService';
 
 const Weather = () => {
     const [cityList, setCityList] = useState([]);
@@ -16,9 +17,9 @@ const Weather = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(process.env.PUBLIC_URL + '/json/citys.json');
-                const data = await response.json();
-                setCityList(data);
+                APIService.getCityList().then((data) => {
+                    setCityList(data);
+                });
             } catch (error) {
                 console.error('Erro ao buscar dados:', error);
             }
@@ -26,8 +27,7 @@ const Weather = () => {
 
         const fetchTempInfo = async (day) => {
             try {
-                const response = await fetch('http://api.ipma.pt/open-data/forecast/meteorology/cities/daily/hp-daily-forecast-day' + day + '.json');
-                const data = await response.json();
+                const data = await APIService.getWeather(day);
                 const tempInfo = getTempInfo(data);
                 const dayName = getDayName(day);
                 return { day: dayName, tempInfo: tempInfo };
@@ -49,17 +49,17 @@ const Weather = () => {
 
         const getTempInfoForThreeDays = async () => {
             try {
-                let auxTempInfo = [];
+                const tempInfoList = [];
                 for (let i = 0; i < 3; i++) {
-                    auxTempInfo.push(fetchTempInfo(i));
+                    const data = await fetchTempInfo(i);
+                    tempInfoList.push(data);
                 }
-                const resolvedTempInfoList = await Promise.all(auxTempInfo);
-                setTempInfo(resolvedTempInfoList);
+                setTempInfo(tempInfoList);
             } catch (error) {
                 console.error('Erro ao buscar dados:', error);
                 throw error;
             }
-        }
+        };
 
         const getTempInfo = (tempInfoList) => {
             const tempInfo = tempInfoList.data.filter((temp) => temp.globalIdLocal === selectedCity.globalIdLocal);
