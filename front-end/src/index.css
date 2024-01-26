@@ -3968,7 +3968,7 @@ input::-moz-focus-inner {
   * ------------------------------------------------------------------- */
 .s-header__nav-wrap {
   margin-left: auto;
-  margin-right: 8.8rem;
+  margin-right: auto;
 }
 
 .s-header__nav-wrap .s-header__nav-heading {

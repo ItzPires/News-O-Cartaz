@@ -20,6 +20,7 @@ function App() {
         <Route path="/categoria/:id" element={<Category />} />
         <Route path="/source/:id" element={<Category source={true} />} />
         <Route path="/ultimas" element={<Category CategoryName="Últimas" latest={true} />} />
+        <Route path="/pesquisa/:id" element={<Category CategoryName="Pesquisa" search={true} />} />
         <Route path="/tempo" element={<Weather />} />
         <Route path="/contactos" element={<Contacts />} />
         <Route path="/sobre" element={<AboutUs />} />

@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Article from "../../components/Article/Article";
 
-const Category = ({ CategoryName, source = false, latest = false }) => {
+const Category = ({ CategoryName, source = false, latest = false, search = false }) => {
     const { id } = useParams();
     const [newsCategory, setNews] = useState([]);
     const category = CategoryName || id;
-    debugger;
 
     useEffect(() => {
         const filterNews = (news) => {
@@ -16,6 +15,9 @@ const Category = ({ CategoryName, source = false, latest = false }) => {
                 }
                 if (latest) {
                     return news.latest === true;
+                }
+                if (search) {
+                    return news.title.toLowerCase().includes(id.toLowerCase()) || news.description.toLowerCase().includes(id.toLowerCase()) || news.category.toLowerCase().includes(id.toLowerCase()) || news.site.toLowerCase().includes(id.toLowerCase());
                 }
                 return news.category === category;
             });
