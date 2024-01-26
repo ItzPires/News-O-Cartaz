@@ -23,8 +23,6 @@ const Home = () => {
                 <h2 className="keywords">Destaques</h2>
                 <div className="bricks-wrapper h-group">
 
-                    <div className="grid-sizer"></div>
-
                     <div className="brick entry featured-grid">
                         <div className="entry__content">
 

@@ -1,33 +1,92 @@
 [
-    {
-      "site": "SIC",
-      "url": "https://sicnoticias.pt/pais/2024-01-25-Chega-vai-avancar-com-mocao-de-censura-ao-Governo-Regional-da-Madeira-605b8857",
-      "url_image": "https://images.impresa.pt/sicnot/2023-10-09-Ultima-Hora-5f0e06bd/original/mw-720",
-      "title": "Chega vai avançar com moção de censura ao Governo Regional da Madeira",
-      "description": "Noticias Sic",
-      "data": "2024-01-25",
-      "category": "País",
-      "latest": true
-    },
-    {
-      "site": "SIC",
-      "url": "https://sicnoticias.pt/pais/2024-01-25-Operacao-Marques-declarados-prescritos-mais-de-uma-dezena-de-crimes-de-fraude-fiscal-afeab5c9",
-      "url_image": "https://images.impresa.pt/sicnot/2023-12-19-Jose-Socrates-89a558c2-1/original/mw-720",
-      "title": "Operação Marquês: declarados prescritos mais de uma dezena de crimes de fraude fiscal",
-      "description": "O antigo primeiro-ministro José Sócrates era o beneficiário em quatro destes crimes, o seu amigo Carlos Santos Silva era beneficiário de um dos crimes e coautor de outros quatro.",
-      "data": "2024-01-25",
-      "category": "Justiça",
-      "latest": true
-    },
-    {
-        "site": "TSF",
-        "url": "https://www.tsf.pt/6808084317/pan-ameaca-romper-acordo-na-madeira-se-miguel-albuquerque-nao-se-demitir/",
-        "url_image": "https://asset-ng.skoiy.com/tsfiqogiwkcugyug/gxbgajo4o6ua.jpg?w=967&q=80&fm=webp",
-        "title": "PAN ameaça romper acordo na Madeira se Miguel Albuquerque não se demitir",
-        "description": "O PAN ameaça esta quinta-feira romper o acordo de incidência parlamentar na Madeira com o PSD, caso Miguel Albuquerque não se demita do cargo de Presidente do Governo Regional.",
-        "data": "2024-01-25",
-        "category": "Política",
-        "latest": true
-      }
-  ]
-  
+  {
+    "site": "pplware",
+    "url": "https://pplware.sapo.pt/informacao/que-se-passa-com-a-tesla-nao-esta-a-correr-bem/",
+    "url_image": "https://pplware.sapo.pt/wp-content/uploads/2023/09/tesla_model_3_highland01-1024x575.jpg",
+    "title": "Que se passa com a Tesla? Não está a correr bem…",
+    "description": "A Tesla é uma marca de enorme referência no segmento dos veículos elétricos e não. Como tal, é também muitas vezes tema de artigos pelas mais diversas razões. Mas, para os mais atentos, há algo que não está bem com a Tesla! Será motivo de preocupação?",
+    "data": "2024-01-26",
+    "category": "Tecnologia",
+    "latest": true
+  },
+  {
+    "site": "Notícias ao Minuto",
+    "url": "https://www.noticiasaominuto.com/mundo/2489232/charles-michel-desiste-de-concorrer-as-eleicoes-europeias",
+    "url_image": "https://media-manager.noticiasaominuto.com/960/42103977.jpg",
+    "title": "Charles Michel desiste de concorrer às eleições europeias",
+    "description": "O presidente do Conselho Europeu, Charles Michel, que anunciou há menos de um mês que iria abandonar precocemente o cargo para concorrer pelos liberais às eleições europeias, decidiu hoje não o fazer para não afetar \"a unidade europeia\".",
+    "data": "2024-01-26",
+    "category": "Mundo",
+    "latest": true
+  },
+  {
+    "site": "Mais Futebol",
+    "url": "https://maisfutebol.iol.pt/mercado/transferencias/sporting-gil-vicente-negoceia-emprestimo-de-afonso-moreira",
+    "url_image": "https://www.iol.pt/multimedia/oratvi/multimedia/imagem/id/65b3ea22d34e65afa2fa1e4e/1024",
+    "title": "Sporting: Gil Vicente negoceia empréstimo de Afonso Moreira",
+    "description": "Extremo renovou contrato com os leões, mas pode sair neste mercado de janeiro",
+    "data": "2024-01-26",
+    "category": "Desporto",
+    "latest": true
+  },
+  {
+    "site": "pplware",
+    "url": "https://pplware.sapo.pt/microsoft/microsoft-lanca-o-mesh-plataforma-de-reunioes-virtuais-no-teams/",
+    "url_image": "https://pplware.sapo.pt/wp-content/uploads/2024/01/microsoft_mesh_01-1024x576.jpg",
+    "title": "Microsoft lança o Mesh, plataforma de reuniões virtuais no Teams",
+    "description": "Enquanto muitas organizações estão a pressionar para que os seus funcionários regressem aos escritórios, a Microsoft sugere que se experimente um novo tipo de trabalho “híbrido”. A empresa anunciou o lançamento do Mesh, uma funcionalidade que permite que os avatares dos funcionários se reúnam no mesmo local, mesmo que as pessoas reais estejam em locais diferentes.",
+    "data": "2024-01-26",
+    "category": "Tecnologia",
+    "latest": true
+  },
+  {
+    "site": "Mais Futebol",
+    "url": "https://maisfutebol.iol.pt/fc-porto/pinto-da-costa/fc-porto-pinto-da-costa-e-recandidato-a-presidencia",
+    "url_image": "https://www.iol.pt/multimedia/oratvi/multimedia/imagem/id/639c44460cf2aea78582b5c3/1024",
+    "title": "FC Porto: Pinto da Costa é recandidato à presidência",
+    "description": "O atual presidente dos dragões vai apresentar a recandidatura no Coliseu do Porto",
+    "data": "2024-01-26",
+    "category": "Desporto",
+    "latest": true
+  },
+  {
+    "site": "Notícias ao Minuto",
+    "url": "https://www.noticiasaominuto.com/pais/2489228/colisao-rodoviaria-corta-transito-na-en108-em-valbom-gondomar",
+    "url_image": "https://media-manager.noticiasaominuto.com/960/naom_62ce9fca66993.jpg",
+    "title": "Colisão rodoviária corta trânsito na EN108 em Valbom, Gondomar",
+    "description": "A Estrada Nacional 108, em Valbom, concelho de Gondomar, está cortada ao trânsito nos dois sentidos desde as 17h30 na sequência de uma colisão rodoviária, revelou à Lusa fonte dos bombeiros locais.",
+    "data": "2024-01-26",
+    "category": "País",
+    "latest": true
+  },
+  {
+    "site": "SIC",
+    "url": "https://sicnoticias.pt/pais/2024-01-25-Chega-vai-avancar-com-mocao-de-censura-ao-Governo-Regional-da-Madeira-605b8857",
+    "url_image": "https://images.impresa.pt/sicnot/2023-10-09-Ultima-Hora-5f0e06bd/original/mw-720",
+    "title": "Chega vai avançar com moção de censura ao Governo Regional da Madeira",
+    "description": "Noticias Sic",
+    "data": "2024-01-25",
+    "category": "País",
+    "latest": true
+  },
+  {
+    "site": "SIC",
+    "url": "https://sicnoticias.pt/pais/2024-01-25-Operacao-Marques-declarados-prescritos-mais-de-uma-dezena-de-crimes-de-fraude-fiscal-afeab5c9",
+    "url_image": "https://images.impresa.pt/sicnot/2023-12-19-Jose-Socrates-89a558c2-1/original/mw-720",
+    "title": "Operação Marquês: declarados prescritos mais de uma dezena de crimes de fraude fiscal",
+    "description": "O antigo primeiro-ministro José Sócrates era o beneficiário em quatro destes crimes, o seu amigo Carlos Santos Silva era beneficiário de um dos crimes e coautor de outros quatro.",
+    "data": "2024-01-25",
+    "category": "Justiça",
+    "latest": true
+  },
+  {
+    "site": "TSF",
+    "url": "https://www.tsf.pt/6808084317/pan-ameaca-romper-acordo-na-madeira-se-miguel-albuquerque-nao-se-demitir/",
+    "url_image": "https://asset-ng.skoiy.com/tsfiqogiwkcugyug/gxbgajo4o6ua.jpg?w=967&q=80&fm=webp",
+    "title": "PAN ameaça romper acordo na Madeira se Miguel Albuquerque não se demitir",
+    "description": "O PAN ameaça esta quinta-feira romper o acordo de incidência parlamentar na Madeira com o PSD, caso Miguel Albuquerque não se demita do cargo de Presidente do Governo Regional.",
+    "data": "2024-01-25",
+    "category": "Política",
+    "latest": true
+  }
+]

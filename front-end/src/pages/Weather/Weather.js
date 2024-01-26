@@ -92,7 +92,6 @@ const Weather = () => {
                     </div>
                     <div className="bricks-wrapper h-group">
 
-                        <div className="grid-sizer"></div>
                         {tempInfo.map((temp, index) => (
                             <WeatherBox key={index} index={index} temp={temp} />
                         ))}

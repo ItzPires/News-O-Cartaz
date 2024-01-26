@@ -40,8 +40,6 @@ const Category = ({ CategoryName, source = false, latest = false, search = false
                 <h2 className="keywords">{category}</h2>
                 <div className="bricks-wrapper h-group">
 
-                    <div className="grid-sizer"></div>
-
                     {newsCategory.map((news, index) => (
                         <Article news={news} index={index} />
                     ))}
