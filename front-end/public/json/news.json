@@ -7,7 +7,6 @@
       "description": "Noticias Sic",
       "data": "2024-01-25",
       "category": "País",
-      "destaques": true,
       "latest": true
     },
     {
@@ -18,7 +17,6 @@
       "description": "O antigo primeiro-ministro José Sócrates era o beneficiário em quatro destes crimes, o seu amigo Carlos Santos Silva era beneficiário de um dos crimes e coautor de outros quatro.",
       "data": "2024-01-25",
       "category": "Justiça",
-      "destaques": true,
       "latest": true
     },
     {
@@ -29,7 +27,6 @@
         "description": "O PAN ameaça esta quinta-feira romper o acordo de incidência parlamentar na Madeira com o PSD, caso Miguel Albuquerque não se demita do cargo de Presidente do Governo Regional.",
         "data": "2024-01-25",
         "category": "Política",
-        "destaques": true,
         "latest": true
       }
   ]

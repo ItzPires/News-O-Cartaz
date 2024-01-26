@@ -17,7 +17,9 @@ function App() {
     <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/categoria/:category" element={<Category />} />
+        <Route path="/categoria/:id" element={<Category />} />
+        <Route path="/source/:id" element={<Category source={true} />} />
+        <Route path="/ultimas" element={<Category CategoryName="Últimas" latest={true} />} />
         <Route path="/tempo" element={<Weather />} />
         <Route path="/contactos" element={<Contacts />} />
         <Route path="/sobre" element={<AboutUs />} />
