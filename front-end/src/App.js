@@ -5,6 +5,7 @@ import Contacts from './pages/Contacts/Contacts';
 import AboutUs from './pages/AboutUs/AboutUs';
 import Sources from './pages/Sources/Sources';
 import Weather from './pages/Weather/Weather';
+import Category from './pages/Categorys/Category';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import './App.css';
@@ -16,6 +17,7 @@ function App() {
     <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/categoria/:category" element={<Category />} />
         <Route path="/tempo" element={<Weather />} />
         <Route path="/contactos" element={<Contacts />} />
         <Route path="/sobre" element={<AboutUs />} />
