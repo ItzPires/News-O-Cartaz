@@ -26,7 +26,6 @@ const Footer = () => {
                             <li><a href="/categoria/Economia">Economia</a></li>
                             <li><a href="/categoria/Cultura">Cultura</a></li>
                             <li><a href="/categoria/Desporto">Desporto</a></li>
-                            <li><a href="/locais">Locais</a></li>
                             <li><a href="/categoria/Mundo">Mundo</a></li>
                             <li><a href="/categoria/Tecnologia">Tecnologia</a></li>
                         </ul>
