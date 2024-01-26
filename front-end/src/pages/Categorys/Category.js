@@ -37,7 +37,7 @@ const Category = ({ CategoryName, source = false, latest = false, search = false
         <section className="s-bricks">
 
             <div className="masonry">
-                <h2>{category}</h2>
+                <h2 className="keywords">{category}</h2>
                 <div className="bricks-wrapper h-group">
 
                     <div className="grid-sizer"></div>

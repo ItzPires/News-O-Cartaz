@@ -4,9 +4,6 @@ import SliderNews from "../components/SliderNews/SliderNews";
 
 const Home = () => {
     const [newsAll, setNewsAll] = useState([]);
-    const [newsT, setNewsT] = useState([]);
-    const [keyword, setKeyword] = useState("");
-
 
     const getNews = async () => {
         const response = await fetch(process.env.PUBLIC_URL + '/json/news.json');
@@ -23,7 +20,7 @@ const Home = () => {
         <section className="s-bricks">
 
             <div className="masonry">
-                <h2>Home</h2>
+                <h2 className="keywords">Destaques</h2>
                 <div className="bricks-wrapper h-group">
 
                     <div className="grid-sizer"></div>

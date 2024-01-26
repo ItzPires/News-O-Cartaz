@@ -77,7 +77,7 @@ const Weather = () => {
             <section className="s-bricks">
 
                 <div className="masonry">
-                    <h2>Tempo - {selectedCity.name}</h2>
+                    <h2 className="keywords">Tempo - {selectedCity.name}</h2>
                     <div className="entry__excerpt">
                         <form name="city" action="/tempo">
 
