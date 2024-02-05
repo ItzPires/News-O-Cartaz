@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import Article from "../../components/Article/Article";
 import APIService from "../../services/APIService";
 
@@ -39,11 +40,15 @@ const Category = ({ CategoryName, source = false, latest = false, search = false
 
             <div className="masonry">
                 <h2 className="keywords">{category}</h2>
-                <div className="bricks-wrapper h-group">
-
-                    {newsCategory.map((news, index) => (
-                        <Article news={news} index={index} />
-                    ))}
+                <div className="bricks-wrapper">
+                    <ResponsiveMasonry
+                        columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+                        <Masonry>
+                            {newsCategory.map((news, index) => (
+                                <Article news={news} index={index} />
+                            ))}
+                        </Masonry>
+                    </ResponsiveMasonry>
                 </div>
             </div>
         </section>

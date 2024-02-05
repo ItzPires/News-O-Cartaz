@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import WeatherBox from '../../components/WeatherBox/WeatherBox';
 import APIService from '../../services/APIService';
 
@@ -90,12 +91,15 @@ const Weather = () => {
                             </select>
                         </form>
                     </div>
-                    <div className="bricks-wrapper h-group">
-
-                        {tempInfo.map((temp, index) => (
-                            <WeatherBox key={index} index={index} temp={temp} />
-                        ))}
-
+                    <div className="bricks-wrapper">
+                        <ResponsiveMasonry
+                            columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+                            <Masonry>
+                                {tempInfo.map((temp, index) => (
+                                    <WeatherBox key={index} index={index} temp={temp} />
+                                ))}
+                            </Masonry>
+                        </ResponsiveMasonry>
                     </div>
 
                 </div>
