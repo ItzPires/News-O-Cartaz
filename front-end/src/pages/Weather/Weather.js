@@ -11,9 +11,11 @@ const Weather = () => {
     });
     const [tempInfo, setTempInfo] = useState([]);
 
-    const handleCityChange = (event) => {
-        setSelectedCity(event.target.value);
-    }
+    const handleCityChange = async (event) => {
+        let city = cityList.filter((city) => city.name === event.target.value)[0];
+        city.globalIdLocal = parseInt(city.globalIdLocal);
+        setSelectedCity(city);
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -67,9 +69,10 @@ const Weather = () => {
             return tempInfo[0];
         }
 
-        fetchData();
+        if (cityList.length === 0)
+            fetchData();
         getTempInfoForThreeDays();
-    }, [])
+    }, [selectedCity]);
 
     //<span dangerouslySetInnerHTML={{ __html: temp[4] }} />
 
