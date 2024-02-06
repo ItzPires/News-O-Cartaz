@@ -1,0 +1,98 @@
+[
+    {
+        "globalIdLocal": "1010500",
+        "name": "Aveiro"
+    },
+    {
+        "globalIdLocal": "1020500",
+        "name": "Beja"
+    },
+    {
+        "globalIdLocal": "1030300",
+        "name": "Braga"
+    },
+    {
+        "globalIdLocal": "1040200",
+        "name": "Bragança"
+    },
+    {
+        "globalIdLocal": "1050200",
+        "name": "Castelo Branco"
+    },
+    {
+        "globalIdLocal": "1060300",
+        "name": "Coimbra"
+    },
+    {
+        "globalIdLocal": "1070500",
+        "name": "Évora"
+    },
+    {
+        "globalIdLocal": "1080500",
+        "name": "Faro"
+    },
+    {
+        "globalIdLocal": "1090700",
+        "name": "Guarda"
+    },
+    {
+        "globalIdLocal": "1100900",
+        "name": "Leiria"
+    },
+    {
+        "globalIdLocal": "1110600",
+        "name": "Lisboa"
+    },
+    {
+        "globalIdLocal": "1121400",
+        "name": "Portalegre"
+    },
+    {
+        "globalIdLocal": "1131200",
+        "name": "Porto"
+    },
+    {
+        "globalIdLocal": "1141600",
+        "name": "Santarém"
+    },
+    {
+        "globalIdLocal": "1151200",
+        "name": "Setúbal"
+    },
+    {
+        "globalIdLocal": "1160900",
+        "name": "Viana do Castelo"
+    },
+    {
+        "globalIdLocal": "1171400",
+        "name": "Vila Real"
+    },
+    {
+        "globalIdLocal": "1182300",
+        "name": "Viseu"
+    },
+    {
+        "globalIdLocal": "2310300",
+        "name": "Funchal"
+    },
+    {
+        "globalIdLocal": "2320100",
+        "name": "Porto Santo"
+    },
+    {
+        "globalIdLocal": "3420300",
+        "name": "Ponta Delgada"
+    },
+    {
+        "globalIdLocal": "3430100",
+        "name": "Angra do Heroísmo"
+    },
+    {
+        "globalIdLocal": "3470100",
+        "name": "Horta"
+    },
+    {
+        "globalIdLocal": "3480200",
+        "name": "Santa Cruz das Flores"
+    }
+]
