@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Contacts from './pages/Contacts/Contacts';
 import AboutUs from './pages/AboutUs/AboutUs';
@@ -13,8 +13,8 @@ import './vendor.css';
 
 function App() {
   return (
-    <BrowserRouter>
-    <NavBar />
+    <HashRouter>
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categoria/:id" element={<Category />} />
@@ -28,7 +28,7 @@ function App() {
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
