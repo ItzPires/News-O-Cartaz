@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/News-O-Cartaz/static/css/main.46e8e0f3.css",
-    "main.js": "/News-O-Cartaz/static/js/main.ccd21943.js",
+    "main.js": "/News-O-Cartaz/static/js/main.bbd158cc.js",
     "static/js/787.498e3191.chunk.js": "/News-O-Cartaz/static/js/787.498e3191.chunk.js",
     "static/media/slick.svg": "/News-O-Cartaz/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/News-O-Cartaz/static/media/slick.a4e97f5a2a64f0ab1323.eot",
@@ -9,11 +9,11 @@
     "static/media/slick.woff": "/News-O-Cartaz/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/News-O-Cartaz/index.html",
     "main.46e8e0f3.css.map": "/News-O-Cartaz/static/css/main.46e8e0f3.css.map",
-    "main.ccd21943.js.map": "/News-O-Cartaz/static/js/main.ccd21943.js.map",
+    "main.bbd158cc.js.map": "/News-O-Cartaz/static/js/main.bbd158cc.js.map",
     "787.498e3191.chunk.js.map": "/News-O-Cartaz/static/js/787.498e3191.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.46e8e0f3.css",
-    "static/js/main.ccd21943.js"
+    "static/js/main.bbd158cc.js"
   ]
 }
