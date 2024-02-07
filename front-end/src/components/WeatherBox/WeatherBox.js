@@ -1,6 +1,6 @@
-const WeatherBox = ({ index, temp }) => {
+const WeatherBox = ({ index, temp, onClick }) => {
     return (
-        <article key={index} className="brick entry format-standard">
+        <article key={index} className="brick entry format-standard" onClick={onClick}>
             <div className="entry__text" style={{ borderRadius: '10px 10px 10px 10px' }}>
                 <div className="entry__header">
                     <img src={process.env.PUBLIC_URL + '/weather/' + temp.tempInfo.idWeatherType + '.svg'} alt="weather" />
