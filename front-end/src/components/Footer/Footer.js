@@ -1,4 +1,9 @@
+import React from 'react';
+import { useNavigate } from "react-router-dom";
+
 const Footer = () => {
+    const navigate = useNavigate();
+
     return (
         <footer className="s-footer">
 
@@ -22,12 +27,12 @@ const Footer = () => {
                         <h5>Categorias</h5>
 
                         <ul>
-                            <li><a href="/categoria/País">País</a></li>
-                            <li><a href="/categoria/Economia">Economia</a></li>
-                            <li><a href="/categoria/Cultura">Cultura</a></li>
-                            <li><a href="/categoria/Desporto">Desporto</a></li>
-                            <li><a href="/categoria/Mundo">Mundo</a></li>
-                            <li><a href="/categoria/Tecnologia">Tecnologia</a></li>
+                            <li><a onClick={() => navigate("/categoria/País")}>País</a></li>
+                            <li><a onClick={() => navigate("/categoria/Economia")}>Economia</a></li>
+                            <li><a onClick={() => navigate("/categoria/Cultura")}>Cultura</a></li>
+                            <li><a onClick={() => navigate("/categoria/Desporto")}>Desporto</a></li>
+                            <li><a onClick={() => navigate("/categoria/Mundo")}>Mundo</a></li>
+                            <li><a onClick={() => navigate("/categoria/Tecnologia")}>Tecnologia</a></li>
                         </ul>
 
                     </div>
@@ -37,9 +42,9 @@ const Footer = () => {
                         <h5>Ajuda?</h5>
 
                         <ul>
-                            <li><a href="/sobre">Sobre Nós</a></li>
-                            <li><a href="/contactos">Contacto</a></li>
-                            <li><a href="/fontes">Fontes</a></li>
+                            <li><a onClick={() => navigate("/sobre")}>Sobre Nós</a></li>
+                            <li><a onClick={() => navigate("/contactos")}>Contacto</a></li>
+                            <li><a onClick={() => navigate("/fontes")}>Fontes</a></li>
                         </ul>
 
                     </div>

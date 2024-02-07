@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import './NavBar.css';
 
 const NavBar = () => {
     const [searchValue, setSearchValue] = useState('');
+
+    const navigate = useNavigate();
 
     const handleSearchChange = (event) => {
         setSearchValue(event.target.value);
@@ -139,18 +142,18 @@ const NavBar = () => {
                     <h2 className="s-header__nav-heading h6">Menu</h2>
 
                     <ul className="s-header__nav">
-                        <li><a href="/" title="">Destaques</a></li>
-                        <li><a href="/ultimas" title="">Últimas</a></li>
-                        <li><a href="/categoria/País">País</a></li>
-                        <li><a href="/categoria/Economia">Economia</a></li>
-                        <li><a href="/categoria/Cultura">Cultura</a></li>
-                        <li><a href="/categoria/Desporto">Desporto</a></li>
-                        <li><a href="/tempo" title="">Tempo</a></li>
-                        <li><a href="/categoria/Mundo">Mundo</a></li>
-                        <li><a href="/categoria/Tecnologia">Tecnologia</a></li>
+                        <li><a onClick={() => navigate("/")}>Destaques</a></li>
+                        <li><a onClick={() => navigate("/ultimas")}>Últimas</a></li>
+                        <li><a onClick={() => navigate("/categoria/País")}>País</a></li>
+                        <li><a onClick={() => navigate("/categoria/Economia")}>Economia</a></li>
+                        <li><a onClick={() => navigate("/categoria/Cultura")}>Cultura</a></li>
+                        <li><a onClick={() => navigate("/categoria/Desporto")}>Desporto</a></li>
+                        <li><a onClick={() => navigate("/tempo")}>Tempo</a></li>
+                        <li><a onClick={() => navigate("/categoria/Mundo")}>Mundo</a></li>
+                        <li><a onClick={() => navigate("/categoria/Tecnologia")}>Tecnologia</a></li>
                     </ul>
 
-                    <a href="#0" title="Close Menu" className="s-header__overlay-close close-mobile-menu">Fechar</a>
+                    <a onClick={() => navigate("#0")} title="Close Menu" className="s-header__overlay-close close-mobile-menu">Fechar</a>
 
                 </nav>
 
@@ -179,7 +182,7 @@ const NavBar = () => {
                         <input type="submit" className="s-header__search-submit" value="Search" />
                     </form>
 
-                    <a href="#0" title="Close Search" className="s-header__overlay-close">
+                    <a onClick={() => navigate("#0")} title="Close Search" className="s-header__overlay-close">
                         Fechar
                     </a>
                 </div>
