@@ -218,8 +218,34 @@ def get_mais_futebol():
     '''Destaques'''
     get_destaques_mais_fut()
 
+'''
+Sic Noticias
+Ultima Atualização: 26/07/2024
+'''
+def get_sic_noticias():
+    '''Ultimas'''
+    url_sic_noticias = "https://sicnoticias.pt/ultimas"
+    session = get_session(url_sic_noticias, False)
+
+    articles = session.html.xpath('//ul[contains(@class ,"list-articles item-count-12")]/descendant::li')
+
+    for article in articles:
+        title = article.html.split('_self"><span>')[1].split('</span></a>')[0].strip()
+        url_news = "https://sicnoticias.pt" + article.html.split('<a href="')[1].split('"')[0]
+        image_element = ""
+        category = article.html.split('">')[7].split('</a></p>')[0].strip()
+        date = datetime.datetime.now()
+
+        description = article.html.split('>')[24].split('</')[0].strip()
+        if("class" in description):
+            description = ""
+        
+        print(title, url_news, category, date, description)
+
+
 if __name__ == "__main__":
     get_razao_automovel()
     get_ppl()
     get_sapo()
     get_mais_futebol()
+    get_sic_noticias()
