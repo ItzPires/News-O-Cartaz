@@ -46,5 +46,34 @@ def get_razao_automovel():
         #addDB(news_site, url_news, url_image, title, "", data, news_category, True, True)
         print(url_image, url_news, title, data)
 
+'''
+Pplware
+Ultima Atualização: 26/07/2024
+'''
+def get_ppl():
+    url = "https://pplware.sapo.pt/"
+    news_site = "pplware"
+    news_category = "Tecnologia"
+
+    r = get_session(url, False)
+
+    classe = '//*[@class="post-inner"]'
+    information = r.html.xpath(classe)
+
+    for i in range(0,len(information)):
+        try:
+            title = information[i].html.split('">')[3].split('</a>')[0]
+
+            urlImage = information[i].html.split('<img loading="lazy" decoding="async" src="')[1].split('" alt=')[0]
+
+            urlNews = information[i].html.split('<a target="_blank" href="')[1].split('" ')[0]
+
+            data = information[i].html.split('time datetime="')[1].split('+')[0] + ".000Z"
+
+            #addDB(news_site, urlNews, urlImage, title, "", data, news_category, False, True)
+        except:
+            pass
+
 if __name__ == "__main__":
     get_razao_automovel()
+    get_ppl()
