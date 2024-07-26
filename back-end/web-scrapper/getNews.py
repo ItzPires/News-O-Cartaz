@@ -146,7 +146,80 @@ def get_sapo():
 
     #get_sapo_news(url_last_sapo, classe)
 
+'''
+Get the data from the news Mais Futebol
+'''
+def get_data_mais_futebol():
+    url_mais_futebol = "https://maisfutebol.iol.pt"
+    session = get_session(url_mais_futebol, False)
+    classe = '//*[@class="destaqueDiv"]'
+
+    information = session.html.xpath(classe)
+
+    for i in range(0, len(information)):
+        url_image = get_information(information[i], '<div class="picture16x9" style="background-image: url(', '//);">')
+
+        url_news = information[i].html.split('<a href="')[1].split('">')[0]
+
+        title = information[i].html.split('<h2 class="title">')[1].split('</h2>')[0]
+
+        try:
+            description = information[i].html.split('class="relacionado">')[1].split('</a')[0]
+        except:
+            description = ""
+
+        data = datetime.datetime.now()
+
+        #addDB("Mais Futebol", url_news, url_image, title, description, data, "Desporto", True, True)
+        print(url_image, url_news, title, description, data)
+
+'''
+Get the highlights from the news Mais Futebol
+'''
+def get_destaques_mais_fut():
+    url_mais_futebol = "https://maisfutebol.iol.pt"
+    session = get_session(url_mais_futebol, False)
+
+    classe = '//*[@class="manchete mancheteNormal slide responsiveImg"]'
+
+    information = session.html.xpath(classe)
+    for i in range(0, len(information)):
+        try:
+            url_image = information[i].html.split('data-img="')[1].split('" sytle=')[0]
+        except:
+            url_image = "/static/logosNews/maisfutebol.png"
+
+        try:
+            url_news = information[i].html.split('<a href="')[1].split('" class="linkImgManchete"/>')[0]
+        except:
+            url_news = None
+
+        try:
+            title = information[i].html.split('<a href="' + url_news + '">')[1].split('<span>')[0].replace("\n","")
+        except:
+            title = None
+
+        data = datetime.datetime.now()
+        if(url_news != None and title != None):
+            #addDB("Mais Futebol", urlNews, urlImage, title, "", data, "Desporto", True, True)
+            print(url_image, url_news, title, data)
+
+'''
+Mais Futebol
+Ultima Atualização: 26/07/2024
+'''
+def get_mais_futebol():
+    '''Ultimas'''
+    # To do
+
+    '''Noticias'''
+    get_data_mais_futebol()
+
+    '''Destaques'''
+    get_destaques_mais_fut()
+
 if __name__ == "__main__":
     get_razao_automovel()
     get_ppl()
     get_sapo()
+    get_mais_futebol()
