@@ -3420,6 +3420,16 @@ input::-moz-focus-inner {
 .bricks-wrapper .entry__title a:visited {
   color: black;
 }
+.entry__meta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.entry__meta .col img {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 0;
+}
 
 .bricks-wrapper .entry__meta {
   font-family: var(--font-1);

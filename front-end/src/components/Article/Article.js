@@ -14,9 +14,14 @@ const Article = ({ news, index }) => {
         <div className="entry__header">
 
           <div className="entry__meta">
-            <span className="entry__cat-links">
-              <a href={`/source/${news.site}`}>{news.site}</a>
-            </span>
+            <div className="col">
+              <span className="entry__cat-links">
+                <a href={`/source/${news.site}`}>{news.site}</a>
+              </span>
+            </div>
+            <div className="col">
+              <img src={process.env.PUBLIC_URL + '/icons/RelatedContent.svg'} alt="Related Content" />
+            </div>
           </div>
 
           <h1 className="entry__title">
