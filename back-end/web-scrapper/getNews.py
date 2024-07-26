@@ -1,10 +1,5 @@
 from requests_html import HTMLSession
-import psycopg2
-import sqlite3
 import datetime
-import time
-import requests
-from lxml import html
 
 '''
 Get the information
@@ -161,7 +156,10 @@ def get_data_mais_futebol():
 
         url_news = information[i].html.split('<a href="')[1].split('">')[0]
 
-        title = information[i].html.split('<h2 class="title">')[1].split('</h2>')[0]
+        try:
+            title = information[i].html.split('<h2>')[1].split('</h2>')[0]
+        except:
+            title = information[i].html.split('<h2 class="title">')[1].split('</h2>')[0]
 
         try:
             description = information[i].html.split('class="relacionado">')[1].split('</a')[0]
