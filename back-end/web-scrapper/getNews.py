@@ -240,6 +240,12 @@ def get_sic_noticias():
         
         print(title, url_news, category, date, description)
 
+'''
+Post the news
+'''
+def post_news(title, url, image, description, date, category, site):
+    # To do
+    pass
 
 if __name__ == "__main__":
     get_razao_automovel()
