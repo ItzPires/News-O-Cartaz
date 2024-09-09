@@ -1,5 +1,11 @@
 from requests_html import HTMLSession
-import datetime
+from datetime import datetime
+import requests
+from dotenv import load_dotenv
+import os
+
+# List of news
+news = []
 
 '''
 Get the information
@@ -47,10 +53,9 @@ def get_razao_automovel():
 
         title = information[i].html.split(url_news + '">')[1].split('</a>')[0].strip()
 
-        data = datetime.datetime.now()
+        data = datetime.now()
 
-        #addDB(news_site, url_news, url_image, title, "", data, news_category, True, True)
-        print(url_image, url_news, title, data)
+        news.append((title, url_news, url_image, "", data, news_category, news_site))
 
 '''
 Pplware
@@ -76,45 +81,45 @@ def get_ppl():
 
             data = information[i].html.split('time datetime="')[1].split('+')[0] + ".000Z"
 
-            #addDB(news_site, urlNews, urlImage, title, "", data, news_category, False, True)
+            news.append((title, urlNews, urlImage, "", data, news_category, news_site))
         except:
             pass
 
 '''
 Get the data from the news Sapo
 '''
-def get_data_sapo(news):
+def get_data_sapo(data):
     meses = ["jan", "1", "fev", "2", "mar", "3", "abr", "4", "mai", "5", "jun", "6", "jul", "7", "ago", "8", "set", "9", "out", "10", "nov", "11", "dez", "12"]
     url_image = description = ""
-    aux = get_information(news, '<a href="', '" tabindex=')
+    aux = get_information(data, '<a href="', '" tabindex=')
     
-    url_image = "https://" + get_information(news, 'data-original-src="//', '" t')
+    url_image = "https://" + get_information(data, 'data-original-src="//', '" t')
 
     url_news = "https://24.sapo.pt" + aux
 
     category = aux.strip("/").split("/")[0]
     category = category[0].upper() + category[1:]
 
-    title = get_information(news, '<span>', '</span>')
+    title = get_information(data, '<span>', '</span>')
         
     try:
-        description = news.html.split('<div class="[ quarter-top-space medium ] excerpt hide-tiny hide-small">')[1].split('</div>')[0].strip()
+        description = data.html.split('<div class="[ quarter-top-space medium ] excerpt hide-tiny hide-small">')[1].split('</div>')[0].strip()
     except:
         description = ""
 
-    day = news.html.split('"day">')[1].split('</span>')[0]
-    month = news.html.split('"month">')[1].split('</span>')[0]
-    year = news.html.split('"year">')[1].split('</span>')[0]
-    hour = news.html.split('"time">')[1].split('</span>')[0]
+    day = data.html.split('"day">')[1].split('</span>')[0]
+    month = data.html.split('"month">')[1].split('</span>')[0]
+    year = data.html.split('"year">')[1].split('</span>')[0]
+    hour = data.html.split('"time">')[1].split('</span>')[0]
 
     for i in range(0, len(meses), 2):
         if(month == meses[i]):
             month = meses[i+1]
 
     date_str = year + "-" + month + "-" + day + " " + hour
-    data = datetime.datetime.strptime(date_str, '%Y-%m-%d %H:%M')
+    data = datetime.strptime(date_str, '%Y-%m-%d %H:%M')
 
-    print(url_image, url_news, title, description, data, category)
+    news.append((title, url_news, url_image, description, data, category, "Sapo"))
 
 def get_sapo_news(url, classe):
     session = get_session(url, False)
@@ -166,10 +171,9 @@ def get_data_mais_futebol():
         except:
             description = ""
 
-        data = datetime.datetime.now()
+        data = datetime.now()
 
-        #addDB("Mais Futebol", url_news, url_image, title, description, data, "Desporto", True, True)
-        print(url_image, url_news, title, description, data)
+        news.append((title, url_news, url_image, description, data, "Desporto", "Mais Futebol"))
 
 '''
 Get the highlights from the news Mais Futebol
@@ -197,10 +201,9 @@ def get_destaques_mais_fut():
         except:
             title = None
 
-        data = datetime.datetime.now()
+        data = datetime.now()
         if(url_news != None and title != None):
-            #addDB("Mais Futebol", urlNews, urlImage, title, "", data, "Desporto", True, True)
-            print(url_image, url_news, title, data)
+            news.append((title, url_news, url_image, "", data, "Desporto", "Mais Futebol"))
 
 '''
 Mais Futebol
@@ -232,20 +235,62 @@ def get_sic_noticias():
         url_news = "https://sicnoticias.pt" + article.html.split('<a href="')[1].split('"')[0]
         image_element = ""
         category = article.html.split('">')[7].split('</a></p>')[0].strip()
-        date = datetime.datetime.now()
+        date = datetime.now()
 
         description = article.html.split('>')[24].split('</')[0].strip()
         if("class" in description):
             description = ""
         
-        print(title, url_news, category, date, description)
+        news.append((title, url_news, image_element, description, date, category, "Sic Noticias"))
 
 '''
 Post the news
 '''
-def post_news(title, url, image, description, date, category, site):
-    # To do
-    pass
+def post_news():
+    load_dotenv(override=True)
+
+    login_data = {
+        'username': os.getenv('USERNAME'),
+        'password': os.getenv('PASSWORD')
+    }
+
+    login_url = os.getenv('BASE_URL') + 'login/'
+    post_url = os.getenv('BASE_URL') + 'news/'
+
+    session = requests.Session()
+
+    # Login
+    response = session.post(login_url, data=login_data)
+
+    # Check if login was successful
+    if response.status_code == 200 and response.json().get('token'):
+        token = response.json().get('token')
+
+        headers = {
+        'Authorization': f'Token {token}',
+        'Content-Type': 'application/json'
+        }
+        
+        # Data to post
+        for data in news:
+            post_data = {
+                'title': data[0],
+                'url': data[1],
+                'image_url': data[2],
+                'description': data[3],
+                'datetime': data[4].isoformat() if isinstance(data[4], datetime) else data[4],
+                #'category': data[5],
+                #'site': data[6]
+            }
+
+            # POST
+            post_response = session.post(post_url, json=post_data, headers=headers)
+
+            if post_response.status_code != 201:
+                print("Error POST:", post_response.status_code)
+                print(post_response.json())
+    else:
+        print("Error login:", response.status_code)
 
 if __name__ == "__main__":
     get_razao_automovel()
@@ -253,3 +298,4 @@ if __name__ == "__main__":
     get_sapo()
     get_mais_futebol()
     get_sic_noticias()
+    post_news()
