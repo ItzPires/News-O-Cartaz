@@ -72,13 +72,13 @@ def get_ppl(session, headers):
         try:
             title = information[i].html.split('">')[3].split('</a>')[0]
 
-            urlImage = information[i].html.split('<img loading="lazy" decoding="async" src="')[1].split('" alt=')[0]
+            url_image = information[i].html.split('<img loading="lazy" decoding="async" src="')[1].split('" alt=')[0]
 
-            urlNews = information[i].html.split('<a target="_blank" href="')[1].split('" ')[0]
+            url_news = information[i].html.split('<a target="_blank" href="')[1].split('" ')[0]
 
             data = information[i].html.split('time datetime="')[1].split('+')[0] + ".000Z"
 
-            post_news((title, urlNews, urlImage, "", data, news_category, news_site), session, headers)
+            post_news((title, url_news, url_image, "", data, news_category, news_site), session, headers)
         except:
             pass
 
@@ -118,13 +118,13 @@ def get_data_sapo(data, session, headers):
 
     post_news((title, url_news, url_image, description, data, category, "Sapo"), session, headers)
 
-def get_sapo_news(url, classe, session, headers):
+def get_sapo_news(url, classe, session_post, headers):
     session = get_session(url, False)
 
     information = session.html.xpath(classe)
 
     for i in range(0, len(information)):
-        get_data_sapo(information[i], session, headers)
+        get_data_sapo(information[i], session_post, headers)
 
 '''
 Sapo
@@ -146,7 +146,7 @@ def get_sapo(session, headers):
 '''
 Get the data from the news Mais Futebol
 '''
-def get_data_mais_futebol(session, headers):
+def get_data_mais_futebol(session_post, headers):
     url_mais_futebol = "https://maisfutebol.iol.pt"
     session = get_session(url_mais_futebol, False)
     classe = '//*[@class="destaqueDiv"]'
@@ -170,12 +170,12 @@ def get_data_mais_futebol(session, headers):
 
         data = datetime.now()
 
-        post_news((title, url_news, url_image, description, data, "Desporto", "Mais Futebol"), session, headers)
+        post_news((title, url_news, url_image, description, data, "Desporto", "Mais Futebol"), session_post, headers)
 
 '''
 Get the highlights from the news Mais Futebol
 '''
-def get_destaques_mais_fut(session, headers):
+def get_destaques_mais_fut(session_post, headers):
     url_mais_futebol = "https://maisfutebol.iol.pt"
     session = get_session(url_mais_futebol, False)
 
@@ -200,7 +200,7 @@ def get_destaques_mais_fut(session, headers):
 
         data = datetime.now()
         if(url_news != None and title != None):
-            post_news((title, url_news, url_image, "", data, "Desporto", "Mais Futebol"), session, headers)
+            post_news((title, url_news, url_image, "", data, "Desporto", "Mais Futebol"), session_post, headers)
 
 '''
 Mais Futebol
@@ -220,7 +220,7 @@ def get_mais_futebol(session, headers):
 Sic Noticias
 Ultima Atualização: 26/07/2024
 '''
-def get_sic_noticias(session, headers):
+def get_sic_noticias(session_post, headers):
     '''Ultimas'''
     url_sic_noticias = "https://sicnoticias.pt/ultimas"
     session = get_session(url_sic_noticias, False)
@@ -238,7 +238,7 @@ def get_sic_noticias(session, headers):
         if("class" in description):
             description = ""
         
-        post_news((title, url_news, image_element, description, date, category, "Sic Noticias"), session, headers)
+        post_news((title, url_news, image_element, description, date, category, "Sic Noticias"), session_post, headers)
 
 '''
 Login
