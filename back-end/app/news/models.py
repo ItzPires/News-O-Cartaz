@@ -1,11 +1,12 @@
 from django.db import models
+from django.utils.timezone import now
 
 class News(models.Model):
-    title = models.CharField(max_length=255)
-    datetime = models.DateTimeField()
-    description = models.TextField()
-    url = models.URLField()
-    image_url = models.URLField()
+    title = models.CharField(max_length=255, unique=True)
+    datetime = models.DateTimeField(default=now)
+    description = models.TextField(blank=True)
+    url = models.URLField(unique=True)
+    image_url = models.URLField(blank=True)
     related_news = models.ForeignKey(
         'self',  # Same model
         null=True,
