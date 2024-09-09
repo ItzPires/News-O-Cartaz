@@ -4,9 +4,6 @@ import requests
 from dotenv import load_dotenv
 import os
 
-# List of news
-news = []
-
 '''
 Get the information
 '''
@@ -36,7 +33,7 @@ def get_session(url, sleep):
 Razão Automóvel
 Ultima Atualização: 26/07/2024
 '''
-def get_razao_automovel():
+def get_razao_automovel(session, headers):
     news_site = "Razão Automóvel"
     news_category = "Auto"
 
@@ -55,13 +52,13 @@ def get_razao_automovel():
 
         data = datetime.now()
 
-        news.append((title, url_news, url_image, "", data, news_category, news_site))
+        post_news((title, url_news, url_image, "", data, news_category, news_site), session, headers)
 
 '''
 Pplware
 Ultima Atualização: 26/07/2024
 '''
-def get_ppl():
+def get_ppl(session, headers):
     url = "https://pplware.sapo.pt/"
     news_site = "pplware"
     news_category = "Tecnologia"
@@ -81,14 +78,14 @@ def get_ppl():
 
             data = information[i].html.split('time datetime="')[1].split('+')[0] + ".000Z"
 
-            news.append((title, urlNews, urlImage, "", data, news_category, news_site))
+            post_news((title, urlNews, urlImage, "", data, news_category, news_site), session, headers)
         except:
             pass
 
 '''
 Get the data from the news Sapo
 '''
-def get_data_sapo(data):
+def get_data_sapo(data, session, headers):
     meses = ["jan", "1", "fev", "2", "mar", "3", "abr", "4", "mai", "5", "jun", "6", "jul", "7", "ago", "8", "set", "9", "out", "10", "nov", "11", "dez", "12"]
     url_image = description = ""
     aux = get_information(data, '<a href="', '" tabindex=')
@@ -119,26 +116,26 @@ def get_data_sapo(data):
     date_str = year + "-" + month + "-" + day + " " + hour
     data = datetime.strptime(date_str, '%Y-%m-%d %H:%M')
 
-    news.append((title, url_news, url_image, description, data, category, "Sapo"))
+    post_news((title, url_news, url_image, description, data, category, "Sapo"), session, headers)
 
-def get_sapo_news(url, classe):
+def get_sapo_news(url, classe, session, headers):
     session = get_session(url, False)
 
     information = session.html.xpath(classe)
 
     for i in range(0, len(information)):
-        get_data_sapo(information[i])
+        get_data_sapo(information[i], session, headers)
 
 '''
 Sapo
 Ultima Atualização: 26/07/2024
 '''
-def get_sapo():
+def get_sapo(session, headers):
     '''Ultimas'''
     url_last_sapo = "https://24.sapo.pt/ultimas"
     classe = '//*[@class="[ tiny-100 small-100 medium-33 large-33 xlarge-33 ]"]'
 
-    get_sapo_news(url_last_sapo, classe)
+    get_sapo_news(url_last_sapo, classe, session, headers)
 
     '''Destaques'''
     #url_tops_sapo = "https://24.sapo.pt/"
@@ -149,7 +146,7 @@ def get_sapo():
 '''
 Get the data from the news Mais Futebol
 '''
-def get_data_mais_futebol():
+def get_data_mais_futebol(session, headers):
     url_mais_futebol = "https://maisfutebol.iol.pt"
     session = get_session(url_mais_futebol, False)
     classe = '//*[@class="destaqueDiv"]'
@@ -173,12 +170,12 @@ def get_data_mais_futebol():
 
         data = datetime.now()
 
-        news.append((title, url_news, url_image, description, data, "Desporto", "Mais Futebol"))
+        post_news((title, url_news, url_image, description, data, "Desporto", "Mais Futebol"), session, headers)
 
 '''
 Get the highlights from the news Mais Futebol
 '''
-def get_destaques_mais_fut():
+def get_destaques_mais_fut(session, headers):
     url_mais_futebol = "https://maisfutebol.iol.pt"
     session = get_session(url_mais_futebol, False)
 
@@ -203,27 +200,27 @@ def get_destaques_mais_fut():
 
         data = datetime.now()
         if(url_news != None and title != None):
-            news.append((title, url_news, url_image, "", data, "Desporto", "Mais Futebol"))
+            post_news((title, url_news, url_image, "", data, "Desporto", "Mais Futebol"), session, headers)
 
 '''
 Mais Futebol
 Ultima Atualização: 26/07/2024
 '''
-def get_mais_futebol():
+def get_mais_futebol(session, headers):
     '''Ultimas'''
     # To do
 
     '''Noticias'''
-    get_data_mais_futebol()
+    get_data_mais_futebol(session, headers)
 
     '''Destaques'''
-    get_destaques_mais_fut()
+    get_destaques_mais_fut(session, headers)
 
 '''
 Sic Noticias
 Ultima Atualização: 26/07/2024
 '''
-def get_sic_noticias():
+def get_sic_noticias(session, headers):
     '''Ultimas'''
     url_sic_noticias = "https://sicnoticias.pt/ultimas"
     session = get_session(url_sic_noticias, False)
@@ -241,12 +238,12 @@ def get_sic_noticias():
         if("class" in description):
             description = ""
         
-        news.append((title, url_news, image_element, description, date, category, "Sic Noticias"))
+        post_news((title, url_news, image_element, description, date, category, "Sic Noticias"), session, headers)
 
 '''
-Post the news
+Login
 '''
-def post_news():
+def login():
     load_dotenv(override=True)
 
     login_data = {
@@ -255,7 +252,6 @@ def post_news():
     }
 
     login_url = os.getenv('BASE_URL') + 'login/'
-    post_url = os.getenv('BASE_URL') + 'news/'
 
     session = requests.Session()
 
@@ -270,32 +266,41 @@ def post_news():
         'Authorization': f'Token {token}',
         'Content-Type': 'application/json'
         }
-        
-        # Data to post
-        for data in news:
-            post_data = {
-                'title': data[0],
-                'url': data[1],
-                'image_url': data[2],
-                'description': data[3],
-                'datetime': data[4].isoformat() if isinstance(data[4], datetime) else data[4],
-                #'category': data[5],
-                #'site': data[6]
-            }
 
-            # POST
-            post_response = session.post(post_url, json=post_data, headers=headers)
-
-            if post_response.status_code != 201:
-                print("Error POST:", post_response.status_code)
-                print(post_response.json())
+        return session, headers
     else:
         print("Error login:", response.status_code)
+        return None
+
+'''
+Post the news
+'''
+def post_news(data, session, headers):
+    load_dotenv(override=True)
+
+    post_url = os.getenv('BASE_URL') + 'news/'
+
+    post_data = {
+        'title': data[0],
+        'url': data[1],
+        'image_url': data[2],
+        'description': data[3],
+        'datetime': data[4].isoformat() if isinstance(data[4], datetime) else data[4],
+        #'category': data[5],
+        #'site': data[6]
+    }
+
+    # POST
+    post_response = session.post(post_url, json=post_data, headers=headers)
+
+    if post_response.status_code != 201:
+        print("Error POST:", post_response.status_code)
+        print(post_response.json())
 
 if __name__ == "__main__":
-    get_razao_automovel()
-    get_ppl()
-    get_sapo()
-    get_mais_futebol()
-    get_sic_noticias()
-    post_news()
+    session, headers = login()
+    get_razao_automovel(session, headers)
+    get_ppl(session, headers)
+    get_sapo(session, headers)
+    get_mais_futebol(session, headers)
+    get_sic_noticias(session, headers)
