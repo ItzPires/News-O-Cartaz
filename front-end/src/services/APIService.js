@@ -1,9 +1,18 @@
 const APIService = {
     globalIdDefault: 1110600,
     getNews: async () => {
-        const response = await fetch(process.env.PUBLIC_URL + '/json/news.json');
+        let url;
+        
+        // Check if the app is running on localhost or on a server
+        if (window.location.hostname === 'localhost') {
+            url = 'http://127.0.0.1:8000/api/news/';
+        } else {
+            url = process.env.PUBLIC_URL + '/json/news.json';
+        }
+    
+        const response = await fetch(url);
         return response.json();
-    },
+    },    
     getCityList: async () => {
         const response = await fetch(process.env.PUBLIC_URL + '/json/citys.json');
         return response.json();

@@ -15,5 +15,8 @@ class News(models.Model):
         related_name='related_new'  # Name of the reverse relation from the related object back to this one
     )
 
+    class Meta:
+        ordering = ['-datetime']
+
     def __str__(self):
         return self.title

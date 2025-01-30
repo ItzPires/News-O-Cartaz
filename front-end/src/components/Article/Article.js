@@ -6,7 +6,7 @@ const Article = ({ news, index }) => {
 
       <div className="entry__thumb">
         <a target="_blank" href={news.url} className="thumb-link">
-          <img src={news.url_image} alt="" />
+          <img src={news.image_url} alt="" />
         </a>
       </div>
 
