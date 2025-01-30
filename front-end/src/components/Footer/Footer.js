@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
     const navigate = useNavigate();
+    const current_year = new Date().getFullYear();
 
     return (
         <footer className="s-footer">
@@ -66,7 +67,7 @@ const Footer = () => {
                 <div className="row">
                     <div className="column">
                         <div className="ss-copyright">
-                            <span>© Copyright ocartaz.pt 2021</span>
+                            <span>ocartaz.pt {current_year}</span>
                         </div>
                     </div>
                 </div>
